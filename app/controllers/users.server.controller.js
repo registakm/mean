@@ -84,26 +84,20 @@ exports.saveOAuthUserProfile = function(req, profile, done) {
   User.findOne({
     provider: profile.provider,
     providerId: profile.providerId
-  },
-  function(err, user) {
+  }, function(err, user) {
     if (err) {
       return done(err);
     } else {
       if (!user) {
-        var possibelUsername = profile.username || ((profile.email) ? profile.email.split('@')[0] : '');
+        var possibleUsername = profile.username || ((profile.email) ? profile.email.split('@')[0] : '');
 
-        User.findUniqueUsername(possibelUsername, null, function(availableUsername) {
+        User.findUniqueUsername(possibleUsername, null, function(availableUsername) {
           profile.username = availableUsername;
+
           user = new User(profile);
 
           user.save(function(err) {
-            if (err) {
-              var message = getErrorMessage(err);
-              req.flash('error', message);
-              return res.redirect('/signup');
-            }
-
-            return done(err, user);
+              return done(err, user);
           });
         });
       } else {
