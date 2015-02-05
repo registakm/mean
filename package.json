@@ -1,0 +1,29 @@
+{
+  "name": "MEAN",
+  "version": "0.0.1",
+  "description": "MEAN Application",
+  "main": "server.js",
+  "keywords": [
+    "MongoDB",
+    "Express",
+    "AngularJS",
+    "Node.js"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.11.0",
+    "compression": "^1.4.0",
+    "connect-flash": "^0.1.1",
+    "ejs": "^2.2.4",
+    "express": "^4.11.2",
+    "express-session": "^1.10.2",
+    "method-override": "^2.3.1",
+    "mongoose": "^3.8.22",
+    "morgan": "^1.5.1",
+    "passport": "^0.2.1",
+    "passport-facebook": "^1.0.3",
+    "passport-google-oauth": "^0.1.5",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "^1.0.2"
+  }
+}
