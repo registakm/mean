@@ -1,23 +1,28 @@
-var passport = require('passport');
-var mongoose = require('mongoose');
+var passport = require('passport'),
+	mongoose = require('mongoose');
 
+// Define the Passport configuration method
 module.exports = function() {
-  var User = mongoose.model('User');
+	// Load the 'User' model
+	var User = mongoose.model('User');
 
-  passport.serializeUser(function(user, done) {
-    done(null, user.id);
-  });
+	// Use Passport's 'serializeUser' method to serialize the user id
+	passport.serializeUser(function(user, done) {
+		done(null, user.id);
+	});
 
-  passport.deserializeUser(function(id, done) {
-    User.findOne({
-      _id: id
-    }, '-password -salt', function (err, user) {
-      done(err, user);
-    });
-  });
+	// Use Passport's 'deserializeUser' method to load the user document
+	passport.deserializeUser(function(id, done) {
+		User.findOne({
+			_id: id
+		}, '-password -salt', function(err, user) {
+			done(err, user);
+		});
+	});
 
-  require('./strategies/local.js')();
-  require('./strategies/facebook.js')();
-  require('./strategies/twitter.js')();
-  require('./strategies/google.js')();
+	// Load Passport's strategies configuration files
+	require('./strategies/local.js')();
+	require('./strategies/twitter.js')();
+	require('./strategies/facebook.js')();
+	require('./strategies/google.js')();
 };
