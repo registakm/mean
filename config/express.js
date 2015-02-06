@@ -1,25 +1,21 @@
-// Invoke 'strict' JavaScript mode
-'use strict';
-
-// Load the module dependencies
-var config = require('./config'),
-	http = require('http'),
-	socketio = require('socket.io'),
-	express = require('express'),
-	morgan = require('morgan'),
-	compress = require('compression'),
-	bodyParser = require('body-parser'),
-	methodOverride = require('method-override'),
-	session = require('express-session'),
-	MongoStore = require('connect-mongo')(session),
-	flash = require('connect-flash'),
-	passport = require('passport');
+var config = require('./config');
+var	http = require('http');
+var	socketio = require('socket.io');
+var	express = require('express');
+var	morgan = require('morgan');
+var	compress = require('compression');
+var	bodyParser = require('body-parser');
+var	methodOverride = require('method-override');
+var	session = require('express-session');
+var	MongoStore = require('connect-mongo')(session);
+var	flash = require('connect-flash');
+var	passport = require('passport');
 
 // Define the Express configuration method
 module.exports = function(db) {
 	// Create a new Express application instance
 	var app = express();
-	
+
 	// Create a new HTTP server
     var server = http.createServer(app);
 
@@ -42,8 +38,8 @@ module.exports = function(db) {
 
 	// Configure the MongoDB session storage
 	var mongoStore = new MongoStore({
-        db: db.connection.db
-    });
+    db: db.connection.db
+  });
 
 	// Configure the 'session' middleware
 	app.use(session({
@@ -74,7 +70,7 @@ module.exports = function(db) {
 
 	// Load the Socket.io configuration
 	require('./socketio')(server, io, mongoStore);
-	
+
 	// Return the Server instance
 	return server;
 };

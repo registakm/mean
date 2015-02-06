@@ -1,5 +1,5 @@
-var passport = require('passport'),
-	mongoose = require('mongoose');
+var passport = require('passport');
+var mongoose = require('mongoose');
 
 // Define the Passport configuration method
 module.exports = function() {

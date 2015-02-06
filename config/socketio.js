@@ -1,10 +1,6 @@
-// Invoke 'strict' JavaScript mode
-'use strict';
-
-// Load the module dependencies
-var config = require('./config'),
-    cookieParser = require('cookie-parser'),
-    passport = require('passport');
+var config = require('./config');
+var cookieParser = require('cookie-parser');
+var passport = require('passport');
 
 // Define the Socket.io configuration method
 module.exports = function(server, io, mongoStore) {
@@ -33,7 +29,7 @@ module.exports = function(server, io, mongoStore) {
             });
         });
     });
-	
+
 	// Add an event listener to the 'connection' event
     io.on('connection', function(socket) {
     	// Load the chat controller
